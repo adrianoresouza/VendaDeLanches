@@ -1,0 +1,93 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<LanchesMac.Models.Lanche>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Administrar Lanches</h1>
+
+<form method="get" class="form-inline">
+    <div class="row g-3 align-items-center">
+        <div class="col-1">
+            <label for="inputPassword6" class="col-form-label">Filtro</label>
+        </div>
+        <div class="col-9">
+            <input name="filter" class="form-control" placeholder="filtro" value="@Model.RouteValue["Filter"]"/>
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-info">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Procurar
+            </button> 
+        </div>
+    </div>    
+</form>
+
+<p class="btn-group mt-3" role="group" aria-label="Basic outlined example">
+    <a class="btn btn-outline-primary" asp-action="Create">Novo Lanche</a> 
+    <a class="btn btn-outline-primary" asp-controller="AdminLanchesReport" asp-action="LanchesCategoriaReport">Gerar Relatório</a>
+    <a class="btn btn-outline-primary" asp-controller="AdminLanchesReport" asp-action="LanchesCategoriaPDF">Gerar Relatório (PDF)</a>
+</p>
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescricaoCurta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preco)
+            </th>
+           <th>
+                @Html.DisplayNameFor(model => model.IsLanchePreferido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmEstoque)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescricaoCurta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsLanchePreferido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmEstoque)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria.CategoriaNome)
+            </td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <a class="btn btn-primary btn-sm m-0.5" asp-action="Edit" asp-route-id="@item.LancheId">Editar</a>
+                    <a class="btn btn-secondary btn-sm" asp-action="Details" asp-route-id="@item.LancheId">Detalhes</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.LancheId">Excluir</a>
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<p>
+    Total de Lanches : @Model.TotalRecordCount
+</p>
+
+<div>
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>

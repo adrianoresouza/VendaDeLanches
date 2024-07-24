@@ -1,0 +1,98 @@
+﻿@model LanchesMac.Models.Lanche
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Cadastrar Novo Lanche</h2>
+<hr />
+<div class="row">
+    <div class="col">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Nome" class="form-control" id="floatingInput" placeholder="Nome do Lanche"/>
+                        <label for="floatingInput">Nome</label>
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-floating mb-3">
+                        <input asp-for="DescricaoCurta" class="form-control" id="floatingInput" placeholder="Descrição Curta"/>
+                        <label for="floatingInput">Descrição Curta</label>
+                        <span asp-validation-for="DescricaoCurta" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-floating mb-3">
+                        <input asp-for="DescricaoDetalhada" class="form-control" id="floatingInput" placeholder="Descrição Detalhada"/>
+                        <label for="floatingInput">Descrição Detalhada</label>
+                        <span asp-validation-for="DescricaoDetalhada" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Preco" class="form-control" id="floatingInput" placeholder="Preço"/>
+                        <label for="floatingInput">Preço</label>
+                        <span asp-validation-for="Preco" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-floating mb-3">
+                        <input asp-for="ImagemUrl" class="form-control" id="floatingInput" placeholder="Url da Imagem"/>
+                        <label for="ImagemUrl">Url da Imagem</label>
+                        <span asp-validation-for="ImagemUrl" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-floating mb-3">
+                        <input asp-for="ImagemThumbnailUrl" class="form-control" id="floatingInput" placeholder="Url Thumbnail"/>
+                        <label for="floatingInput">Url Thumbnail</label>
+                        <span asp-validation-for="ImagemThumbnailUrl" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="d-flex justify-content-center col-sm-2 align-items-center">
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="IsLanchePreferido" /> @Html.DisplayNameFor(model => model.IsLanchePreferido)
+                        </label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center col-sm-2 align-items-center">
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="EmEstoque" /> @Html.DisplayNameFor(model => model.EmEstoque)
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-floating">
+                        <select asp-for="CategoriaId" class="form-select" id="floatingSelect" 
+                            aria-label="Floating label select example" 
+                            asp-items="ViewBag.CategoriaId"></select>
+                        <label for="floatingSelect">Categoria</label>
+                        <span asp-validation-for="CategoriaId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 mb-4 justify-content-end">
+                <div class="col-auto">
+                    <input type="submit" value="Criar Lanche" class="btn btn-primary" />
+                </div>
+                <div class="col-auto">
+                    <a asp-action="Index" class="btn btn-outline-primary">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
