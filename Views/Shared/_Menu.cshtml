@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="javascript:void(0)">
+        <img src="~/images/rajsnacks.png" width="50px" height="50px"/>
+                Lanches Raj
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+        <li class="nav-item">
+            @await Component.InvokeAsync("CategoriaMenu")
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" asp-controller="Contato" asp-action="Index">Contato</a>
+        </li>
+        <li class="nav-item">
+          @await Component.InvokeAsync("CarrinhoCompraResumo")
+        </li>
+        <li class="nav-item">
+        @if(User.IsInRole("Admin"))
+        {
+                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Index">
+                    Admin
+                </a>
+        }
+        </li>
+      </ul>
+      @await Html.PartialAsync("_LoginPartial")
+      <form class="d-flex" asp-controller="Lanche" asp-action="Search" method="get">
+        <input class="form-control me-2" type="text" placeholder="Procurar produto" name="searchstring" value="@ViewData["searchString"]">
+        @* <button class="btn btn-primary" type="button">Search</button> *@
+      </form>
+    </div>
+  </div>
+</nav>
+Fixed Navigat
