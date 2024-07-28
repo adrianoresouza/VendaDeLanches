@@ -1,10 +1,10 @@
 @model LancheListViewModel
 
-<div>
-    <h2>@Model.CategoriaAtual</h2>
-</div>
 
 <div class="container" />
+    <div class="row text-center mt-4">
+        <h2>@Model.CategoriaAtual</h2>
+    </div>
     <div class="row align-items-center h-100">
         @foreach (var lanche in Model.Lanches)
         {
